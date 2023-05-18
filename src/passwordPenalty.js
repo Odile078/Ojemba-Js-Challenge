@@ -19,17 +19,14 @@ export default function penaltyPoints(password = "") {
   const regexTestForThreeAndMoreCharacters = /(\w)\1{2,}/g;
 
   //check the sequence of 3 and more characters
-  if (regexTestForThreeAndMoreCharacters.test(password)) {
-    return (points = 2);
-  }
+  if (regexTestForThreeAndMoreCharacters.test(password)) return (points = 2);
 
   //check the sequence of 2 characters
   if (regexTestForTwoCharacters.test(password)) {
     //check if the occurrence of two characters is present more than once
     const matches = password.match(regexTestForTwoCharacters);
-    if (matches && matches.length > 1) {
-      return (points = 2);
-    }
+    if (matches && matches.length > 1) return (points = 2);
+
     //else give penalty points of 1
     return (points = 1);
   }

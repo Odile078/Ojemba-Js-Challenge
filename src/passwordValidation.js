@@ -11,65 +11,32 @@ export default function isValidPassword(password = "") {
   if (typeof password !== "string") password = String(password);
 
   // Check if password is exactly 10 characters or digits
-  if (password.length !== 10) {
-    return false;
-  }
+  if (password.length !== 10) return false;
 
   // Check if password contains only digits and letters
-  if (!/^[0-9a-zA-Z]{10}$/.test(password)) {
-    return false;
-  }
+  if (!/^[0-9a-zA-Z]{10}$/.test(password)) return false;
 
   // Check if password contains special characters
-  if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-    return false;
-  }
+  if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) return false;
 
   // Check if password contains a mix of uppercase and lowercase characters
-  if (!/(?=.*[a-z])(?=.*[A-Z])/.test(password)) {
-    return false;
-  }
+  if (!/(?=.*[a-z])(?=.*[A-Z])/.test(password)) return false;
 
   // Check if password contains a sequence of directly ascending or descending digits
   if (
     !/^(?:(?!012|123|234|345|456|567|678|789|987|876|765|654|543|432|321|210)[0-9a-zA-Z])+$/.test(
       password
     )
-  ) {
+  )
     return false;
-  }
 
   // Check if password is one of the forbidden passwords
-  if (forbiddenPasswords.includes(password)) {
-    return false;
-  }
+  if (forbiddenPasswords.includes(password)) return false;
+
   // Check if password consists of at least 4 different characters
   const setOfPassword = new Set([...password]);
-  if (setOfPassword.size < 4) {
-    return false;
-  }
+  if (setOfPassword.size < 4) return false;
+
   // If all checks pass, the password is valid
   return true;
-
-  // const regexTestTenDigitsOrCharacters = /^[0-9a-zA-Z]{10}$/;
-  // const regexTestDigitsAndNumbers = /^[0-9a-zA-Z]+$/;
-  // const regexTestExcludeSpecialCharacters = /^[^\W_]+$/g;
-  // const regexTestMixOfUpperAndLowerCase = /(?=.*[a-z])(?=.*[A-Z])/;
-  // const regexTestForAscendingAndDescendingSequence =
-  //   /^(?:(?!012|123|234|345|456|567|678|789|987|876|765|654|543|432|321|210)[0-9a-zA-Z])+$/;
-  // // const setOfPassword = new Set([...password]);
-  // // if (setOfPassword.size < 4) return false;
-  // if (
-  //   regexTestTenDigitsOrCharacters.test(password) &&
-  //   regexTestDigitsAndNumbers.test(password) &&
-  //   regexTestExcludeSpecialCharacters.test(password) &&
-  //   regexTestMixOfUpperAndLowerCase.test(password) &&
-  //   regexTestForAscendingAndDescendingSequence.test(password)
-  // ) {
-  //   password !== "amG84h6yeQ" &&
-  //   password !== "mc9Q20pdjH" &&
-  //   password !== "jnT6Q2f8U5"
-  //     ? true
-  //     : false;
-  // } else return false;
 }
