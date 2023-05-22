@@ -6,7 +6,5 @@
 
 // FUNCTION 2
 export default function searchFoodItems(items) {
-  const foodItems = [];
-  items.forEach((item) => (item.type === "Food" ? foodItems.push(item) : null));
-  return foodItems;
+  return items.filter((item) => item.type === "Food");
 }
