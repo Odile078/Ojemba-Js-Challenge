@@ -9,11 +9,13 @@ export default function findLargestNumber(numbers) {
   //check if the numbers parameter is an array or empty. If so return null
   if (!Array.isArray(numbers) || numbers.length === 0) return null;
 
-  let largest = numbers[0];
-  for (const number of numbers) {
-    if (number > largest) {
-      largest = number;
-    }
-  }
-  return largest;
+  const largestNumber = numbers[0];
+
+  return numbers.reduce((accumulator, currentValue) => {
+    // Check if the currentValue is greater than the previousValue, accumulator
+    if (currentValue > accumulator) return (accumulator = currentValue);
+
+    // If the currentValue is not larger than the accumulator
+    return accumulator;
+  }, largestNumber);
 }
